@@ -27,7 +27,7 @@ $(document).ready(function (){
 
 function getLatestUrl(base_url) {
     base_url = base_url.split("/");
-    base_url[base_url.length - 1] = $("#gare-inserimentos-id").val();
+    base_url[base_url.length - 1] = ($("#gare-inserimentos-id").val() || 0);
     base_url = base_url.join("/");
     return base_url;
 }

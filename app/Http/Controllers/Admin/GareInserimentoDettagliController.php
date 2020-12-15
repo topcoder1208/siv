@@ -86,13 +86,13 @@ class GareInserimentoDettagliController extends Controller
 
     public function getPremio($gareInserimentosId) 
     {
-        $checked_categories = GareInserimentoDettagli::where(['tipologia_id' => 17, 'gare_inserimento_id' => $gareInserimentosId, 'valore_n_2' => 1])->get();
+        $checked_offertes = GareInserimentoDettagli::where(['tipologia_id' => 17, 'gare_inserimento_id' => $gareInserimentosId])->get();
 
         $soglies = GareInserimentoDettagli::where(['gare_inserimento_id' => $gareInserimentosId, 'tipologia_id' => '19'])->orderBy("valore_n_2")->get();
         
         $values = GareInserimentoDettagli::where(['gare_inserimento_id' => $gareInserimentosId, 'tipologia_id' => '20'])->get();
         
-        return array('checked_categories' => $checked_categories, 'soglies' => $soglies, 'values' => $values);
+        return array('checked_offertes' => $checked_offertes, 'soglies' => $soglies, 'values' => $values);
     }
 
     public function getDettaglis($tipologia_id, $gare_inserimento_id) 
@@ -384,22 +384,25 @@ class GareInserimentoDettagliController extends Controller
         return "success";
     }
 
+    public function getFasce($gare_inserimento_id) {
+        $fasce = GareInserimentoDettagli::where(['gare_inserimento_id' => $gare_inserimento_id, 'tipologia_id' => 17])->get();
+        return $fasce;
+    }
+
     public function saveFasce(Request $request)
     {
         $data = $request->all();
-        $brand_categories = $data['brand-tiplogias'];
+        $offertes_ids = $data['offertes-ids'];
+        $offertes_names = $data['offertes-names'];
         $gare_inserimento_id = $data['gare-inserimentos-id'];
-        $all_categories = Categorie::all();
-
+        
         GareInserimentoDettagli::where(['tipologia_id' => 17, 'gare_inserimento_id' => $gare_inserimento_id])->forceDelete();
 
-        foreach($all_categories as $category) {
+        foreach($offertes_ids as $ind => $offertes_id) {
             GareInserimentoDettagli::insert([
                 'tipologia' => 'servizi',
-                'valore_n_1' => $category->id,
-                'valore_n_2' => (array_search($category->id, $brand_categories) === FALSE ? 0 : 1),
-                'descrizione_valore' => $category->nome,
-                'created_at' => date('Y-m-d H:i:s'),
+                'valore_n_1' => $offertes_id,
+                'descrizione_valore' => $offertes_names[$ind],
                 'gare_inserimento_id' => $gare_inserimento_id, 
                 'tipologia_id' => 17
             ]);
@@ -452,6 +455,30 @@ class GareInserimentoDettagliController extends Controller
         GareInserimentoDettagli::where(['gare_inserimento_id' => $data['gare-inserimentos-id'], 'tipologia_id' => '21'])->forceDelete();
         foreach($valore_n_1 as $ind => $val) {
             GareInserimentoDettagli::insert(['gare_inserimento_id' => $data['gare-inserimentos-id'], 'tipologia_id' => '21', 'valore_n_1' => $val, 'valore_n_2' => $valore_n_2[$ind], 'valore_n_3' => $valore_n_3[$ind], 'tipologia' => 'Metodo']);
+        }
+
+        return 'success';
+    }
+
+    public function getEsito($gare_inserimento_id) {
+        $esito = GareInserimentoDettagli::where(['gare_inserimento_id' => $gare_inserimento_id, 'tipologia_id' => 22])->get();
+        return $metodo;
+    }
+
+    public function saveEsito(Request $request) 
+    {
+        $data = $request->all();
+        $esito = $data['esito'];
+        $esito_incremento = $data['esito_incremento'];
+        $esito_decremento = $data['esito_decremento'];
+        GareInserimento::where(['id' => $data['gare-inserimentos-id']])->update(['esito_incremento' => $esito_incremento, 'esito_decremento' => $esito_decremento, 'esito' => $esito]);
+
+        if(isset($data['esito_gare'])) {
+            $esito_gare = $data['esito_gare'];
+            GareInserimentoDettagli::where(['gare_inserimento_id' => $data['gare-inserimentos-id'], 'tipologia_id' => '22'])->forceDelete();
+            foreach($esito_gare as $ind => $val) {
+                GareInserimentoDettagli::insert(['gare_inserimento_id' => $data['gare-inserimentos-id'], 'tipologia_id' => '22', 'valore_n_1' => $val, 'tipologia' => 'Esito']);
+            }
         }
 
         return 'success';

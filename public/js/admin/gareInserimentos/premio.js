@@ -43,9 +43,9 @@ $(document).ready(function () {
             }
             str += "</tr>";
                 
-            for(var i = 0;i < data.checked_categories.length;i ++) {
+            for(var i = 0;i < data.checked_offertes.length;i ++) {
                 str += '<tr>';
-                str += '<td>' + data.checked_categories[i].descrizione_valore + '</td>';
+                str += '<td>' + data.checked_offertes[i].descrizione_valore + '</td>';
                 for(var j = 0;j < fasco;j ++) {
                     str += '<td colspan="4">';
                     str += '<input type="text" name="" class="form-control value-inputs apply-col-' +j+ '" col="' +j+ '">';

@@ -89,6 +89,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     Route::get('gare-inserimento-dettaglis/get-premio/{gare_inserimento_id}', 'GareInserimentoDettagliController@getPremio')->name('gare-inserimento-dettaglis.getPremio');
     Route::get('gare-inserimento-dettaglis/get-metodo/{gare_inserimento_id}', 'GareInserimentoDettagliController@getMetodo')->name('gare-inserimento-dettaglis.getMetodo');
+    Route::get('gare-inserimento-dettaglis/get-fasce/{gare_inserimento_id}', 'GareInserimentoDettagliController@getFasce')->name('gare-inserimento-dettaglis.getFasce');
+    Route::get('gare-inserimento-dettaglis/get-esito/{gare_inserimento_id}', 'GareInserimentoDettagliController@getEsito')->name('gare-inserimento-dettaglis.getEsito');
 
     Route::get('gare-inserimento-dettaglis/insert-from/{tipologia_id}/{gare_inserimento_id}', 'GareInserimentoDettagliController@insertFrom')->name('gare-inserimento-dettaglis.insertFrom');
     
@@ -99,6 +101,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::post('gare-inserimento-dettaglis/save-fasce', 'GareInserimentoDettagliController@saveFasce')->name('gare-inserimento-dettaglis.saveFasce');
     Route::post('gare-inserimento-dettaglis/save-premio', 'GareInserimentoDettagliController@savePremio')->name('gare-inserimento-dettaglis.savePremio');
     Route::post('gare-inserimento-dettaglis/save-metodo', 'GareInserimentoDettagliController@saveMetodo')->name('gare-inserimento-dettaglis.saveMetodo');
+    Route::post('gare-inserimento-dettaglis/save-esito', 'GareInserimentoDettagliController@saveEsito')->name('gare-inserimento-dettaglis.saveEsito');
     Route::post('gare-inserimento-dettaglis/insertBrandCategoriesDetails', 'GareInserimentoDettagliController@insertBrandCategoriesDetails')->name('gare-inserimento-dettaglis.insertBrandCategoriesDetails');
     
     Route::resource('gare-inserimento-dettaglis', 'GareInserimentoDettagliController');

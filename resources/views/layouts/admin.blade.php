@@ -123,6 +123,7 @@
     <script src="{{ asset('js/admin/gareInserimentos/premio.js') }}"></script>
     <script src="{{ asset('js/admin/gareInserimentos/fasce.js') }}"></script>
     <script src="{{ asset('js/admin/gareInserimentos/metodo.js') }}"></script>
+    <script src="{{ asset('js/admin/gareInserimentos/esito.js') }}"></script>
 
     @if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
         <script src="{{ asset('js/admin/gareInserimentos/target.js') }}"></script>

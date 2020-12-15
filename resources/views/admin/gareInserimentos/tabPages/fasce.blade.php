@@ -2,16 +2,22 @@
     <p></p>
     <p></p>
     <p>Quante fasce precedi di utilizzare?</p>
-    <ul class="list-group list-group-flush">
-        @foreach($brand_tipologias as $id => $data)
-        <li class="list-group-item">
-            <div class="custom-control custom-checkbox">
-                <input type="checkbox" value="{{$id}}" name="brand-tiplogias" class="custom-control-input" id="check_{{$id}}" {{$data[1] == 1 ? "checked" : ""}}>
-                <label class="custom-control-label" for="check_{{$id}}">{{$data[0]}}</label>
-            </div>
-        </li>
-        @endforeach
-    </ul>
+    <table id="offertes_list" url="{{route('admin.gare-inserimento-dettaglis.getFasce', ['gare_inserimento_id' => 0])}}">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($esito_negativos as $id => $data)
+            <tr>
+                <td class="offertes-id">{{$id}}</td>
+                <td>{{$data}}</td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
     <p>
         <div class="col-lg-5 col-md-7">
             <input type="number" class="form-control" id="inp_fasce" placeholder="Inserisci il numero di fasce da autilizzare" value="{{$fasce_val}}">

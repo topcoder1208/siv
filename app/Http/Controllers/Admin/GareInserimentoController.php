@@ -159,7 +159,13 @@ class GareInserimentoController extends Controller
                                 ->where('id', '<>' ,$gare_id)
                                 ->get()->pluck('titolo', 'id');
 
-        return view('admin.gareInserimentos.create', compact('brand_tipologias', 'brand_categories', 'fasce_val', 'gare', 'gares', 'modalita', 'brands', 'dettaglis', 'visibilitas', 'esito_negativos'));
+        $t = GareInserimentoDettagli::where(['gare_inserimento_id' => $gare_id, 'tipologia_id' => 22])->get();
+        $esito_gares = [];
+        foreach($t as $row) {
+            $esito_gares[$row->valore_n_1] = 1;
+        }
+
+        return view('admin.gareInserimentos.create', compact('brand_tipologias', 'brand_categories', 'fasce_val', 'gare', 'gares', 'modalita', 'brands', 'dettaglis', 'visibilitas', 'esito_negativos', 'esito_gares'));
     }
 
     public function update(UpdateGareInserimentoRequest $request, GareInserimento $gareInserimento)

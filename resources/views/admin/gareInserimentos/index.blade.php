@@ -3,9 +3,16 @@
 @can('gare_inserimento_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
-            <a class="btn btn-success" href="{{ route('admin.gare-inserimentos.create') }}">
-                {{ trans('global.add') }} {{ trans('cruds.gareInserimento.title_singular') }}
-            </a>
+            @if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
+                <a class="btn btn-success" href="{{ route('admin.gare-inserimentos.target.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.gareInserimento.title_singular') }}
+                </a>
+            @elseif(request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*"))
+                <a class="btn btn-success" href="{{ route('admin.gare-inserimentos.fascia.create') }}">
+                    {{ trans('global.add') }} {{ trans('cruds.gareInserimento.title_singular') }}
+                </a>
+            @endif
+
         </div>
     </div>
 @endcan
@@ -78,20 +85,20 @@
                         <td>
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            <input class="search form-control" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            <input class="search form-control" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            <input class="search form-control" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
                         </td>
                         <td>
                         </td>
                         <td>
-                            <select class="search">
+                            <select class="search form-control">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($categories as $key => $item)
                                     <option value="{{ $item->nome }}">{{ $item->nome }}</option>
@@ -99,7 +106,7 @@
                             </select>
                         </td>
                         <td>
-                            <select class="search">
+                            <select class="search form-control">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($soggetti_tipologia as $key => $item)
                                     <option value="{{ $item->tipologia }}">{{ $item->tipologia }}</option>
@@ -107,7 +114,7 @@
                             </select>
                         </td>
                         <td>
-                            <select class="search" strict="true">
+                            <select class="search form-control" strict="true">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach(App\Models\GareInserimento::ESITO_RADIO as $key => $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
@@ -115,13 +122,13 @@
                             </select>
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            <input class="search form-control" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            <input class="search form-control" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                            <select class="search">
+                            <select class="search form-control">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach($offertes as $key => $item)
                                     <option value="{{ $item->nome }}">{{ $item->nome }}</option>
@@ -129,16 +136,16 @@
                             </select>
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            <input class="search form-control" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            <input class="search form-control" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                            <input class="search" type="text" placeholder="{{ trans('global.search') }}">
+                            <input class="search form-control" type="text" placeholder="{{ trans('global.search') }}">
                         </td>
                         <td>
-                            <select class="search" strict="true">
+                            <select class="search form-control" strict="true">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach(App\Models\GareInserimento::METODO_CALCOLO_RADIO as $key => $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
@@ -146,7 +153,7 @@
                             </select>
                         </td>
                         <td>
-                            <select class="search" strict="true">
+                            <select class="search form-control" strict="true">
                                 <option value>{{ trans('global.all') }}</option>
                                 @foreach(App\Models\GareInserimento::METODO_FAMIGLIA_RADIO as $key => $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
@@ -218,17 +225,25 @@
                                 {{ App\Models\GareInserimento::METODO_FAMIGLIA_RADIO[$gareInserimento->metodo_famiglia] ?? '' }}
                             </td>
                             <td>
-                                @can('gare_inserimento_show')
+                                <!-- @can('gare_inserimento_show')
                                     <a class="btn btn-xs btn-primary" href="{{ route('admin.gare-inserimentos.show', $gareInserimento->id) }}">
                                         {{ trans('global.view') }}
                                     </a>
-                                @endcan
+                                @endcan -->
 
-                                @can('gare_inserimento_edit')
-                                    <a class="btn btn-xs btn-info" href="{{ route('admin.gare-inserimentos.edit', $gareInserimento->id) }}">
-                                        {{ trans('global.edit') }}
-                                    </a>
-                                @endcan
+                                @if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
+                                    @can('gare_inserimento_edit')
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.gare-inserimentos.target.edit', $gareInserimento->id) }}">
+                                            {{ trans('global.edit') }}
+                                        </a>
+                                    @endcan
+                                @elseif(request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*"))
+                                    @can('gare_inserimento_edit')
+                                        <a class="btn btn-xs btn-info" href="{{ route('admin.gare-inserimentos.fascia.edit', $gareInserimento->id) }}">
+                                            {{ trans('global.edit') }}
+                                        </a>
+                                    @endcan
+                                @endif
 
                                 @can('gare_inserimento_delete')
                                     <form action="{{ route('admin.gare-inserimentos.destroy', $gareInserimento->id) }}" method="POST" onsubmit="return confirm('{{ trans('global.areYouSure') }}');" style="display: inline-block;">

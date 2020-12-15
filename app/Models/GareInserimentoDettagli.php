@@ -19,7 +19,7 @@ class GareInserimentoDettagli extends Model
     ];
 
     protected $fillable = [
-        'gara_inserimento_id',
+        'gare_inserimento_id',
         'tipologia',
         'valore_n_1',
         'valore_n_2',
@@ -46,6 +46,6 @@ class GareInserimentoDettagli extends Model
 
     public function gara_inserimento()
     {
-        return $this->belongsTo(GareInserimento::class, 'gara_inserimento_id');
+        return $this->belongsTo(GareInserimento::class, 'gare_inserimento_id');
     }
 }

@@ -9,8 +9,8 @@ class AddRelationshipFieldsToGareInserimentoDettaglisTable extends Migration
     public function up()
     {
         Schema::table('gare_inserimento_dettaglis', function (Blueprint $table) {
-            $table->unsignedBigInteger('gara_inserimento_id');
-            $table->foreign('gara_inserimento_id', 'gara_inserimento_fk_2573645')->references('id')->on('gare_inserimentos');
+            $table->unsignedBigInteger('gare_inserimento_id');
+            $table->foreign('gare_inserimento_id', 'gara_inserimento_fk_2573645')->references('id')->on('gare_inserimentos');
         });
     }
 }

@@ -17,16 +17,20 @@ class UpdateGareInserimentoRequest extends FormRequest
     public function rules()
     {
         return [
+            'id'                => [
+                'string',
+                'nullable',
+            ],
             'titolo'                => [
                 'string',
-                'required',
+                'nullable',
             ],
             'tipologia_gara'        => [
                 'string',
-                'required',
+                'nullable',
             ],
             'validita_inizio'       => [
-                'required',
+                'nullable',
                 'date_format:' . config('panel.date_format'),
             ],
             'validita_fine'         => [
@@ -46,7 +50,7 @@ class UpdateGareInserimentoRequest extends FormRequest
                 'array',
             ],
             'esito'                 => [
-                'required',
+                'nullable',
             ],
             'esito_incremento'      => [
                 'nullable',

@@ -12,6 +12,7 @@ class CreateBrandsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name')->unique();
             $table->boolean('attivo')->default(0)->nullable();
+            $table->string('logo')->default('')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

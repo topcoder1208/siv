@@ -21,8 +21,8 @@ class FtpManagerController extends Controller
         config(['filesystems.disks.ftp.password' => $ftp_config['MxFTP_PWD']]);
         
         $file_path = "/";
-        $f_manager = Storage::disk('ftp');
-        // $f_manager = Storage::disk('local');
+        // $f_manager = Storage::disk('ftp');
+        $f_manager = Storage::disk('local');
 
         $contents = $f_manager->listContents($file_path, true);
         foreach($contents as $content) {

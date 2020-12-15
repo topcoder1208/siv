@@ -21,6 +21,14 @@ class StoreCategorieRequest extends FormRequest
                 'string',
                 'nullable',
             ],
+            'brand_id' => [
+                'int',
+                'nullable'
+            ],
+            'tecnologia_modalita_id' => [
+                'int',
+                'nullable'
+            ]
         ];
     }
 }

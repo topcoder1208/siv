@@ -28,6 +28,7 @@ class Categorie extends Model
         'tipologia',
         'attivo',
         'brand_id',
+        'tecnologia_modalita_id',
         'created_at',
         'updated_at',
         'deleted_at',

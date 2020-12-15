@@ -13,6 +13,8 @@ class CreateCategoriesTable extends Migration
             $table->string('nome')->nullable();
             $table->boolean('attivo')->default(0)->nullable();
             $table->string('tipologia')->nullable();
+            $table->string('brand_id')->nullable();
+            $table->string('tecnologia_modalita_id')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

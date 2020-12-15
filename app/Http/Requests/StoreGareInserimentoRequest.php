@@ -19,14 +19,14 @@ class StoreGareInserimentoRequest extends FormRequest
         return [
             'titolo'                => [
                 'string',
-                'required',
+                'nullable',
             ],
             'tipologia_gara'        => [
                 'string',
-                'required',
+                'nullable',
             ],
             'validita_inizio'       => [
-                'required',
+                'nullable',
                 'date_format:' . config('panel.date_format'),
             ],
             'validita_fine'         => [
@@ -46,7 +46,7 @@ class StoreGareInserimentoRequest extends FormRequest
                 'array',
             ],
             'esito'                 => [
-                'required',
+                'nullable',
             ],
             'esito_incremento'      => [
                 'nullable',
@@ -74,6 +74,10 @@ class StoreGareInserimentoRequest extends FormRequest
             ],
             'servizi'               => [
                 'string',
+                'nullable',
+            ],
+            'brand'               => [
+                'integer',
                 'nullable',
             ],
             'metodo_attribuzione'   => [

@@ -37,6 +37,7 @@ class GareInserimento extends Model
     ];
 
     protected $fillable = [
+        'id',
         'titolo',
         'tipologia_gara',
         'validita_inizio',
@@ -49,9 +50,40 @@ class GareInserimento extends Model
         'metodo_attribuzione',
         'metodo_calcolo',
         'metodo_famiglia',
+        'brand',
+        'premiotipo',
+        'premio_quantita',
+        'dipendenza',
+        'dipendenza_gara_id',
+        'stato',
         'created_at',
         'updated_at',
         'deleted_at',
+    ];
+
+    protected $attributes = [
+        'id' => 0,
+        'titolo' => '',
+        'tipologia_gara' => 0,
+        'validita_inizio' => '',
+        'validita_fine' => NULL,
+        'esito' => '',
+        'esito_incremento' => NULL,
+        'esito_decremento' => NULL,
+        'numero_fasce_previste' => NULL,
+        'servizi' => NULL,
+        'metodo_attribuzione' => NULL,
+        'metodo_calcolo' => NULL,
+        'metodo_famiglia' => NULL,
+        'brand' => 0,
+        'premiotipo' => 0,
+        'premio_quantita' => 0,
+        'dipendenza' => 0,
+        'dipendenza_gara_id' => 0,
+        'stato' => 0,
+        'created_at' => NULL,
+        'updated_at' => NULL,
+        'deleted_at' => NULL,
     ];
 
     protected function serializeDate(DateTimeInterface $date)

@@ -22,6 +22,12 @@ class CreateGareInserimentosTable extends Migration
             $table->string('esito');
             $table->integer('esito_incremento')->nullable();
             $table->integer('esito_decremento')->nullable();
+            $table->integer('brand')->nullable();
+            $table->integer('premiotipo')->nullable();
+            $table->integer('premio_quantita')->nullable();
+            $table->integer('dipendenza')->nullable();
+            $table->integer('dipendenza_gara_id')->nullable();
+            $table->integer('stato')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

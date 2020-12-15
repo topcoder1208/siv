@@ -17,7 +17,7 @@ class UpdateGareInserimentoDettagliRequest extends FormRequest
     public function rules()
     {
         return [
-            'gara_inserimento_id' => [
+            'gare_inserimento_id' => [
                 'required',
                 'integer',
             ],

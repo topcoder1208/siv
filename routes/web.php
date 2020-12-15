@@ -9,7 +9,7 @@ Route::get('/home', function () {
     return redirect()->route('admin.home');
 });
 
-Route::get('/update', 'FtpManagerController@update')->name('update');
+Route::get('update', 'FtpManagerController@update')->name('update');
 
 Auth::routes(['register' => false]);
 
@@ -69,6 +69,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Gare Inserimentos
     Route::delete('gare-inserimentos/destroy', 'GareInserimentoController@massDestroy')->name('gare-inserimentos.massDestroy');
+    Route::get('gare-inserimentos/fascia', 'GareInserimentoController@index')->name('gare-inserimentos.fascia');
+    Route::get('gare-inserimentos/target', 'GareInserimentoController@index')->name('gare-inserimentos.target');
+    Route::get('gare-inserimentos/fascia/create', 'GareInserimentoController@create')->name('gare-inserimentos.fascia.create');
+    Route::get('gare-inserimentos/target/create', 'GareInserimentoController@create')->name('gare-inserimentos.target.create');
+    Route::get('gare-inserimentos/fascia/{gare_inserimento}/edit', 'GareInserimentoController@edit')->name('gare-inserimentos.fascia.edit');
+    Route::get('gare-inserimentos/target/{gare_inserimento}/edit', 'GareInserimentoController@edit')->name('gare-inserimentos.target.edit');
     Route::resource('gare-inserimentos', 'GareInserimentoController');
 
     // Soggetti Tipologia
@@ -77,6 +83,24 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 
     // Gare Inserimento Dettaglis
     Route::delete('gare-inserimento-dettaglis/destroy', 'GareInserimentoDettagliController@massDestroy')->name('gare-inserimento-dettaglis.massDestroy');
+
+    Route::get('gare-inserimento-dettaglis/get-dettaglis/{tipologia_id}/{gare_inserimento_id}', 'GareInserimentoDettagliController@getDettaglis')->name('gare-inserimento-dettaglis.getDettaglis');
+    Route::get('gare-inserimento-dettaglis/get-dettaglis-src/{tipologia_id}/{gare_inserimento_id}', 'GareInserimentoDettagliController@getDettaglisSrc')->name('gare-inserimento-dettaglis.getDettaglisSrc');
+
+    Route::get('gare-inserimento-dettaglis/get-premio/{gare_inserimento_id}', 'GareInserimentoDettagliController@getPremio')->name('gare-inserimento-dettaglis.getPremio');
+    Route::get('gare-inserimento-dettaglis/get-metodo/{gare_inserimento_id}', 'GareInserimentoDettagliController@getMetodo')->name('gare-inserimento-dettaglis.getMetodo');
+
+    Route::get('gare-inserimento-dettaglis/insert-from/{tipologia_id}/{gare_inserimento_id}', 'GareInserimentoDettagliController@insertFrom')->name('gare-inserimento-dettaglis.insertFrom');
+    
+    Route::post('gare-inserimento-dettaglis/insert-from-selected', 'GareInserimentoDettagliController@insertFromSelected')->name('gare-inserimento-dettaglis.insertFromSelected');
+    
+    Route::post('gare-inserimento-dettaglis/insert-from-file/{tipologia_id}/{gare_inserimento_id}', 'GareInserimentoDettagliController@insertFromFileUpload')->name('gare-inserimento-dettaglis.insertFromFileUpload');
+
+    Route::post('gare-inserimento-dettaglis/save-fasce', 'GareInserimentoDettagliController@saveFasce')->name('gare-inserimento-dettaglis.saveFasce');
+    Route::post('gare-inserimento-dettaglis/save-premio', 'GareInserimentoDettagliController@savePremio')->name('gare-inserimento-dettaglis.savePremio');
+    Route::post('gare-inserimento-dettaglis/save-metodo', 'GareInserimentoDettagliController@saveMetodo')->name('gare-inserimento-dettaglis.saveMetodo');
+    Route::post('gare-inserimento-dettaglis/insertBrandCategoriesDetails', 'GareInserimentoDettagliController@insertBrandCategoriesDetails')->name('gare-inserimento-dettaglis.insertBrandCategoriesDetails');
+    
     Route::resource('gare-inserimento-dettaglis', 'GareInserimentoDettagliController');
 
     // Inserimento Gare Soglies
@@ -122,6 +146,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     // Dealer Mandatis
     Route::delete('dealer-mandatis/destroy', 'DealerMandatiController@massDestroy')->name('dealer-mandatis.massDestroy');
     Route::resource('dealer-mandatis', 'DealerMandatiController');
+
+    Route::resource('test', 'TestController');
+    Route::post('upload/{tipologia_id}/{gare_inserimento_id}', 'FileController@upload')->name('upload');
 });
 Route::group(['prefix' => 'profile', 'as' => 'profile.', 'namespace' => 'Auth', 'middleware' => ['auth']], function () {
 // Change password

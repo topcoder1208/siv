@@ -1,211 +1,101 @@
 @extends('layouts.admin')
 @section('content')
 
-<div class="card">
-    <div class="card-header">
-        {{ trans('global.create') }} {{ trans('cruds.gareInserimento.title_singular') }}
-    </div>
+<section id="tabs" class="project-tab">
+    <div class="container" style="max-width: 100%;">
+        <div class="row">
+            <div class="col-md-12">
+                <nav>
+                    <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                        <a class="nav-item nav-link active" id="nav-gara-tab" data-toggle="tab" href="#nav-gara" role="tab" aria-controls="nav-gara" aria-selected="true">Gara</a>
+                        <a class="nav-item nav-link" id="nav-brand-tab" data-toggle="tab" href="#nav-brand" role="tab" aria-controls="nav-brand" aria-selected="false">Brand</a>
+                        <a class="nav-item nav-link" id="nav-beneficiari-tab" data-toggle="tab" href="#nav-beneficiari" role="tab" aria-controls="nav-beneficiari" aria-selected="false">Beneficiari</a>
+                        <a class="nav-item nav-link" id="nav-concorrenti-tab" data-toggle="tab" href="#nav-concorrenti" role="tab" aria-controls="nav-concorrenti" aria-selected="false">Concorrenti</a>
+                        <a class="nav-item nav-link" id="nav-visibilita-tab" data-toggle="tab" href="#nav-visibilita" role="tab" aria-controls="nav-visibilita" aria-selected="false">Visibilità</a>
+                        <a class="nav-item nav-link" id="nav-esito-tab" data-toggle="tab" href="#nav-esito" role="tab" aria-controls="nav-esito" aria-selected="false">Esito</a>
 
-    <div class="card-body">
-        <form method="POST" action="{{ route("admin.gare-inserimentos.store") }}" enctype="multipart/form-data">
-            @csrf
-            <div class="form-group">
-                <label class="required" for="titolo">{{ trans('cruds.gareInserimento.fields.titolo') }}</label>
-                <input class="form-control {{ $errors->has('titolo') ? 'is-invalid' : '' }}" type="text" name="titolo" id="titolo" value="{{ old('titolo', '') }}" required>
-                @if($errors->has('titolo'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('titolo') }}
+                        @if(request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*"))
+                            <a class="nav-item nav-link" id="nav-fasce-tab" data-toggle="tab" href="#nav-fasce" role="tab" aria-controls="nav-fasce" aria-selected="false">Fasce</a>
+                        @endif
+
+                        <a class="nav-item nav-link" id="nav-premio-tab" data-toggle="tab" href="#nav-premio" role="tab" aria-controls="nav-premio" aria-selected="false">Premio</a>
+                        
+                        @if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
+                            <a class="nav-item nav-link" id="nav-target-tab" data-toggle="tab" href="#nav-target" role="tab" aria-controls="nav-target" aria-selected="false">Target</a>
+                        @endif
+                        <a class="nav-item nav-link" id="nav-dipendenze-tab" data-toggle="tab" href="#nav-dipendenze" role="tab" aria-controls="nav-dipendenze" aria-selected="false">Dipendenze</a>
+                        <a class="nav-item nav-link" id="nav-metodo-attribuzione-tab" data-toggle="tab" href="#nav-metodo-attribuzione" role="tab" aria-controls="nav-metodo-attribuzione" aria-selected="false">Metodo attribuzione</a>
                     </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.titolo_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="tipologia_gara">{{ trans('cruds.gareInserimento.fields.tipologia_gara') }}</label>
-                <input class="form-control {{ $errors->has('tipologia_gara') ? 'is-invalid' : '' }}" type="text" name="tipologia_gara" id="tipologia_gara" value="{{ old('tipologia_gara', '') }}" required>
-                @if($errors->has('tipologia_gara'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('tipologia_gara') }}
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    
+                    @include('admin.gareInserimentos.tabPages.gara')
+                    @include('admin.gareInserimentos.tabPages.brand')
+                    @include('admin.gareInserimentos.tabPages.beneficiari')
+                    @include('admin.gareInserimentos.tabPages.consorrenti')
+                    @include('admin.gareInserimentos.tabPages.visibilita')
+                    @include('admin.gareInserimentos.tabPages.esito')
+                    
+                    @if(request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*"))
+                        @include('admin.gareInserimentos.tabPages.fasce')
+                    @endif
+
+                    @include('admin.gareInserimentos.tabPages.premio')
+
+                    @if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
+                        @include('admin.gareInserimentos.tabPages.target')
+                    @endif
+                    
+                    @include('admin.gareInserimentos.tabPages.dipendenze')
+                    @include('admin.gareInserimentos.tabPages.metodo_attribuzione')
+                    <!-- Modal -->
+                    <div class="modal fade bd-example-modal-xl" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-xl" role="document">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Seleziona punti vendita</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="container">
+                                    <table class="table table-fluid" id="myTable">
+                                        <thead>
+                                            <tr><th>Name</th><th>Email</th><th>Password</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr><td>Daniel Danny</td><td>danny.daniel@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Samuel</td><td>samuel@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Jack</td><td>jack@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Eureka</td><td>eureka@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Pinky</td><td>pinky@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Mishti</td><td>mishti@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Puneet</td><td>puneet@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Nick</td><td>nick@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Danika</td><td>danika@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Vishakha</td><td>vishakha@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Nitin</td><td>ni3@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Latika</td><td>latika@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Kaavya</td><td>kaavya@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Ishika</td><td>ishika@gmail.com</td><td>Pass1234</td></tr>
+                                            <tr><td>Veronika</td><td>veronika@gmail.com</td><td>Pass1234</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                <button type="button" class="btn btn-primary">Inserisci</button>
+                            </div>
+                            </div>
+                        </div>
                     </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.tipologia_gara_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required" for="validita_inizio">{{ trans('cruds.gareInserimento.fields.validita_inizio') }}</label>
-                <input class="form-control date {{ $errors->has('validita_inizio') ? 'is-invalid' : '' }}" type="text" name="validita_inizio" id="validita_inizio" value="{{ old('validita_inizio') }}" required>
-                @if($errors->has('validita_inizio'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('validita_inizio') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.validita_inizio_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="validita_fine">{{ trans('cruds.gareInserimento.fields.validita_fine') }}</label>
-                <input class="form-control date {{ $errors->has('validita_fine') ? 'is-invalid' : '' }}" type="text" name="validita_fine" id="validita_fine" value="{{ old('validita_fine') }}">
-                @if($errors->has('validita_fine'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('validita_fine') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.validita_fine_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="brand_tipologias">{{ trans('cruds.gareInserimento.fields.brand_tipologia') }}</label>
-                <div style="padding-bottom: 4px">
-                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
                 </div>
-                <select class="form-control select2 {{ $errors->has('brand_tipologias') ? 'is-invalid' : '' }}" name="brand_tipologias[]" id="brand_tipologias" multiple>
-                    @foreach($brand_tipologias as $id => $brand_tipologia)
-                        <option value="{{ $id }}" {{ in_array($id, old('brand_tipologias', [])) ? 'selected' : '' }}>{{ $brand_tipologia }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('brand_tipologias'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('brand_tipologias') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.brand_tipologia_helper') }}</span>
             </div>
-            <div class="form-group">
-                <label for="visibilitas">{{ trans('cruds.gareInserimento.fields.visibilita') }}</label>
-                <div style="padding-bottom: 4px">
-                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-                </div>
-                <select class="form-control select2 {{ $errors->has('visibilitas') ? 'is-invalid' : '' }}" name="visibilitas[]" id="visibilitas" multiple>
-                    @foreach($visibilitas as $id => $visibilita)
-                        <option value="{{ $id }}" {{ in_array($id, old('visibilitas', [])) ? 'selected' : '' }}>{{ $visibilita }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('visibilitas'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('visibilitas') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.visibilita_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label class="required">{{ trans('cruds.gareInserimento.fields.esito') }}</label>
-                @foreach(App\Models\GareInserimento::ESITO_RADIO as $key => $label)
-                    <div class="form-check {{ $errors->has('esito') ? 'is-invalid' : '' }}">
-                        <input class="form-check-input" type="radio" id="esito_{{ $key }}" name="esito" value="{{ $key }}" {{ old('esito', '') === (string) $key ? 'checked' : '' }} required>
-                        <label class="form-check-label" for="esito_{{ $key }}">{{ $label }}</label>
-                    </div>
-                @endforeach
-                @if($errors->has('esito'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('esito') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.esito_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="esito_incremento">{{ trans('cruds.gareInserimento.fields.esito_incremento') }}</label>
-                <input class="form-control {{ $errors->has('esito_incremento') ? 'is-invalid' : '' }}" type="number" name="esito_incremento" id="esito_incremento" value="{{ old('esito_incremento', '') }}" step="1">
-                @if($errors->has('esito_incremento'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('esito_incremento') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.esito_incremento_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="esito_decremento">{{ trans('cruds.gareInserimento.fields.esito_decremento') }}</label>
-                <input class="form-control {{ $errors->has('esito_decremento') ? 'is-invalid' : '' }}" type="number" name="esito_decremento" id="esito_decremento" value="{{ old('esito_decremento', '') }}" step="1">
-                @if($errors->has('esito_decremento'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('esito_decremento') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.esito_decremento_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="esito_negativos">{{ trans('cruds.gareInserimento.fields.esito_negativo') }}</label>
-                <div style="padding-bottom: 4px">
-                    <span class="btn btn-info btn-xs select-all" style="border-radius: 0">{{ trans('global.select_all') }}</span>
-                    <span class="btn btn-info btn-xs deselect-all" style="border-radius: 0">{{ trans('global.deselect_all') }}</span>
-                </div>
-                <select class="form-control select2 {{ $errors->has('esito_negativos') ? 'is-invalid' : '' }}" name="esito_negativos[]" id="esito_negativos" multiple>
-                    @foreach($esito_negativos as $id => $esito_negativo)
-                        <option value="{{ $id }}" {{ in_array($id, old('esito_negativos', [])) ? 'selected' : '' }}>{{ $esito_negativo }}</option>
-                    @endforeach
-                </select>
-                @if($errors->has('esito_negativos'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('esito_negativos') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.esito_negativo_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="numero_fasce_previste">{{ trans('cruds.gareInserimento.fields.numero_fasce_previste') }}</label>
-                <input class="form-control {{ $errors->has('numero_fasce_previste') ? 'is-invalid' : '' }}" type="number" name="numero_fasce_previste" id="numero_fasce_previste" value="{{ old('numero_fasce_previste', '') }}" step="1">
-                @if($errors->has('numero_fasce_previste'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('numero_fasce_previste') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.numero_fasce_previste_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="servizi">{{ trans('cruds.gareInserimento.fields.servizi') }}</label>
-                <input class="form-control {{ $errors->has('servizi') ? 'is-invalid' : '' }}" type="text" name="servizi" id="servizi" value="{{ old('servizi', '') }}">
-                @if($errors->has('servizi'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('servizi') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.servizi_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label for="metodo_attribuzione">{{ trans('cruds.gareInserimento.fields.metodo_attribuzione') }}</label>
-                <input class="form-control {{ $errors->has('metodo_attribuzione') ? 'is-invalid' : '' }}" type="number" name="metodo_attribuzione" id="metodo_attribuzione" value="{{ old('metodo_attribuzione', '') }}" step="1">
-                @if($errors->has('metodo_attribuzione'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('metodo_attribuzione') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.metodo_attribuzione_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label>{{ trans('cruds.gareInserimento.fields.metodo_calcolo') }}</label>
-                @foreach(App\Models\GareInserimento::METODO_CALCOLO_RADIO as $key => $label)
-                    <div class="form-check {{ $errors->has('metodo_calcolo') ? 'is-invalid' : '' }}">
-                        <input class="form-check-input" type="radio" id="metodo_calcolo_{{ $key }}" name="metodo_calcolo" value="{{ $key }}" {{ old('metodo_calcolo', '') === (string) $key ? 'checked' : '' }}>
-                        <label class="form-check-label" for="metodo_calcolo_{{ $key }}">{{ $label }}</label>
-                    </div>
-                @endforeach
-                @if($errors->has('metodo_calcolo'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('metodo_calcolo') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.metodo_calcolo_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <label>{{ trans('cruds.gareInserimento.fields.metodo_famiglia') }}</label>
-                @foreach(App\Models\GareInserimento::METODO_FAMIGLIA_RADIO as $key => $label)
-                    <div class="form-check {{ $errors->has('metodo_famiglia') ? 'is-invalid' : '' }}">
-                        <input class="form-check-input" type="radio" id="metodo_famiglia_{{ $key }}" name="metodo_famiglia" value="{{ $key }}" {{ old('metodo_famiglia', '') === (string) $key ? 'checked' : '' }}>
-                        <label class="form-check-label" for="metodo_famiglia_{{ $key }}">{{ $label }}</label>
-                    </div>
-                @endforeach
-                @if($errors->has('metodo_famiglia'))
-                    <div class="invalid-feedback">
-                        {{ $errors->first('metodo_famiglia') }}
-                    </div>
-                @endif
-                <span class="help-block">{{ trans('cruds.gareInserimento.fields.metodo_famiglia_helper') }}</span>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-danger" type="submit">
-                    {{ trans('global.save') }}
-                </button>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
+</section>
 
 
 

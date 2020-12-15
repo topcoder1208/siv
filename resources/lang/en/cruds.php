@@ -286,6 +286,12 @@ return [
     'gareInserimento'         => [
         'title'          => 'Gare Inserimento',
         'title_singular' => 'Gare Inserimento',
+        'target' => [
+            'title' => 'Gare Inserimento Target'
+        ],
+        'fascia' => [
+            'title' => 'Gare Inserimento Fasce'
+        ],
         'fields'         => [
             'id'                           => 'ID',
             'id_helper'                    => ' ',
@@ -325,6 +331,11 @@ return [
             'esito_incremento_helper'      => ' ',
             'esito_decremento'             => 'ridurre i compensi con un decremento percentuale al mancato raggiungimento dell\'obiettivo fissato in gara',
             'esito_decremento_helper'      => ' ',
+            'titolo_della_gara_dal_al'     => 'Qual è l\'intervallo di validità della gara?',
+            'titolo_della_gara_dal'        => 'Dal',
+            'titolo_della_gara_dal_helper' => ' ',
+            'titolo_della_gara_al'        => 'Al',
+            'titolo_della_gara_al_helper' => ' ',
         ],
     ],
     'soggettiTipologium'      => [

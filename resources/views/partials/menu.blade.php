@@ -88,11 +88,19 @@
                     @endcan
                     @can('gare_inserimento_access')
                         <li class="c-sidebar-nav-item">
-                            <a href="{{ route("admin.gare-inserimentos.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/gare-inserimentos") || request()->is("admin/gare-inserimentos/*") ? "c-active" : "" }}">
-                                <i class="fa-fw fas fa-magic c-sidebar-nav-icon">
+                            <a href="{{ route("admin.gare-inserimentos.fascia") }}" class="c-sidebar-nav-link {{ request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-cart-plus c-sidebar-nav-icon">
 
                                 </i>
-                                {{ trans('cruds.gareInserimento.title') }}
+                                {{ trans('cruds.gareInserimento.fascia.title') }}
+                            </a>
+                        </li>
+                        <li class="c-sidebar-nav-item">
+                            <a href="{{ route("admin.gare-inserimentos.target") }}" class="c-sidebar-nav-link {{ request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target/*") ? "c-active" : "" }}">
+                                <i class="fa-fw fas fa-bullseye c-sidebar-nav-icon">
+
+                                </i>
+                                {{ trans('cruds.gareInserimento.target.title') }}
                             </a>
                         </li>
                     @endcan

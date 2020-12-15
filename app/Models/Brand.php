@@ -28,6 +28,7 @@ class Brand extends Model implements HasMedia
     protected $fillable = [
         'name',
         'attivo',
+        'logo',
         'created_at',
         'updated_at',
         'deleted_at',

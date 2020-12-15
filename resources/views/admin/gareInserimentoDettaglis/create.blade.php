@@ -10,10 +10,10 @@
         <form method="POST" action="{{ route("admin.gare-inserimento-dettaglis.store") }}" enctype="multipart/form-data">
             @csrf
             <div class="form-group">
-                <label class="required" for="gara_inserimento_id">{{ trans('cruds.gareInserimentoDettagli.fields.gara_inserimento') }}</label>
-                <select class="form-control select2 {{ $errors->has('gara_inserimento') ? 'is-invalid' : '' }}" name="gara_inserimento_id" id="gara_inserimento_id" required>
+                <label class="required" for="gare_inserimento_id">{{ trans('cruds.gareInserimentoDettagli.fields.gara_inserimento') }}</label>
+                <select class="form-control select2 {{ $errors->has('gara_inserimento') ? 'is-invalid' : '' }}" name="gare_inserimento_id" id="gare_inserimento_id" required>
                     @foreach($gara_inserimentos as $id => $gara_inserimento)
-                        <option value="{{ $id }}" {{ old('gara_inserimento_id') == $id ? 'selected' : '' }}>{{ $gara_inserimento }}</option>
+                        <option value="{{ $id }}" {{ old('gare_inserimento_id') == $id ? 'selected' : '' }}>{{ $gara_inserimento }}</option>
                     @endforeach
                 </select>
                 @if($errors->has('gara_inserimento'))

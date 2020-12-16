@@ -25,7 +25,10 @@
                     @endforeach
                 </div>
                 @endforeach
-                
+            </div>
+        </div>
+        <div class="mt-5 row">
+            <div class="col-lg-4 col-md-8 col-sm-12">
                 <button class="btn btn-info go-back">
                     Titolo della gara
                 </button>

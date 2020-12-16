@@ -90,10 +90,10 @@
             </div>
         </div>
         <p></p>
-        <div class="row">
+        <div class="mt-5 row">
             <div class="col-lg-3 col-md-6 col-sm-9">
                 <button class="btn btn-info go-back">
-                    Titolo della gara
+                    Dipendenze
                 </button>
             </div>
             <div class="col-lg-9 col-md-6 col-sm-3">

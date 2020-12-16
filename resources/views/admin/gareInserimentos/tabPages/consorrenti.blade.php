@@ -1,3 +1,8 @@
+<style type="text/css">
+    #nav-concorrenti .dt-buttons {
+        display: none;
+    }
+</style>
 <div class="tab-pane fade" id="nav-concorrenti" role="tabpanel" aria-labelledby="nav-concorrenti-tab">
     <form id="form_consorrenti" method="POST" action="{{route('admin.gare-inserimento-dettaglis.insertFrom', ['gare_inserimento_id' => 0, 'tipologia_id' => 14])}}">
         @method('POST')
@@ -19,7 +24,7 @@
             <p>
                 <div class="form-group" style="margin: 3px 0px 3px 25px">
                     <div class="custom-file">
-                        <div id="consorrenti-file" class="file-uploader" url="{{ route('admin.gare-inserimento-dettaglis.insertFromFileUpload', ['tipologia_id' => 14, 'gare_inserimento_id' => 0]) }}">Scelgi il file di elenco</div>
+                        <div id="consorrenti-file" class="file-uploader" url="{{ route('admin.gare-inserimento-dettaglis.insertFromFileUpload', ['tipologia_id' => 14, 'gare_inserimento_id' => 0]) }}">Scegli il file di elenco</div>
                     </div>
                 </div>
             </p>
@@ -39,25 +44,27 @@
             </div>
         </div>
     </form>
-    <div id="consorrenti_lists_wrapper" class="consorrenti-table">
-        <table id="consorrenti_lists" style="width: 100%;" url="{{route('admin.gare-inserimento-dettaglis.getDettaglis', ['tipologia_id' => 14, 'gare_inserimento_id' => 0])}}">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Codice</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-        </table>
+    <div class="row">
+        <div id="consorrenti_lists_wrapper" class="consorrenti-table col-lg-4 col-md-6 col-sm-12">
+            <table id="consorrenti_lists" class="col-lg-4 col-md-6 col-sm-12" style="width: 100%;" url="{{route('admin.gare-inserimento-dettaglis.getDettaglis', ['tipologia_id' => 14, 'gare_inserimento_id' => 0])}}">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Codice</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 
-    <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="mt-5 row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
             <button class="btn btn-info go-back">
-                Titolo della gara
+                Beneficiari
             </button>
             <button class="btn btn-danger pull-right go-next">
-                Beneficiari
+                Visibilità
             </button>
         </div>
     </div>

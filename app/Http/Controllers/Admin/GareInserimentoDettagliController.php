@@ -462,7 +462,7 @@ class GareInserimentoDettagliController extends Controller
 
     public function getEsito($gare_inserimento_id) {
         $esito = GareInserimentoDettagli::where(['gare_inserimento_id' => $gare_inserimento_id, 'tipologia_id' => 22])->get();
-        return $metodo;
+        return $esito;
     }
 
     public function saveEsito(Request $request) 
@@ -478,6 +478,25 @@ class GareInserimentoDettagliController extends Controller
             GareInserimentoDettagli::where(['gare_inserimento_id' => $data['gare-inserimentos-id'], 'tipologia_id' => '22'])->forceDelete();
             foreach($esito_gare as $ind => $val) {
                 GareInserimentoDettagli::insert(['gare_inserimento_id' => $data['gare-inserimentos-id'], 'tipologia_id' => '22', 'valore_n_1' => $val, 'tipologia' => 'Esito']);
+            }
+        }
+
+        return 'success';
+    }
+
+    public function getVisibilita($gare_inserimento_id) {
+        $data = GareInserimentoDettagli::where(['gare_inserimento_id' => $gare_inserimento_id, 'tipologia_id' => 23])->get();
+        return $data;
+    }
+
+    public function saveVisibilita(Request $request) 
+    {
+        $data = $request->all();
+
+        if(isset($data['data'])) {
+            GareInserimentoDettagli::where(['gare_inserimento_id' => $data['gare-inserimentos-id'], 'tipologia_id' => '23'])->forceDelete();
+            foreach($data['data'] as $ind => $val) {
+                GareInserimentoDettagli::insert(['gare_inserimento_id' => $data['gare-inserimentos-id'], 'tipologia_id' => '23', 'valore_n_1' => $val, 'tipologia' => 'Visibilita']);
             }
         }
 

@@ -15,13 +15,13 @@
             @include('admin.gareInserimentos.tabPages.beneficiari.agentia')
             @include('admin.gareInserimentos.tabPages.beneficiari.dealer')
 
-            <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-12">
+            <div class="mt-5 row">
+                <div class="col-lg-4 col-md-8 col-sm-12">
                     <button class="btn btn-info go-back">
-                        Titolo della gara
+                        Brand
                     </button>
                     <button class="btn btn-danger pull-right go-next">
-                        Beneficiari
+                        Concorrenti
                     </button>
                 </div>
             </div>

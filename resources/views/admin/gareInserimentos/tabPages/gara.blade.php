@@ -41,7 +41,7 @@
 
         <input type="hidden" name="tipologia_gara" id="tipologia_gara" value="{{ (request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*") ? 'fasce' : 'target')}}">
         <input type="hidden" name="gare-inserimentos-id" id="gare-inserimentos-id" value="{{(!isset($gare->id) ? "" : $gare->id)}}">
-        <div class="form-group">
+        <div class="mt-5 form-group">
             <button class="btn btn-danger go-next" type="submit">
                 Scegli Brand
             </button>

@@ -23,6 +23,16 @@ $(document).ready(function (){
 
     $("#esito_modal_save_button").click(function() {
         $("#esito_modal").click();
+        var ids = [];
+        var i = 0;
+        while(1) {
+            var rowData = datatable.row(i).data();
+            if(rowData === undefined) {
+                break;
+            }
+            ids.push(rowData[0]);
+            i ++;
+        }
         var checked = datatable.column(0).checkboxes.selected();
         for(var i = 0;i < checked.length;i ++) {
             if($('#esito_' +checked[i]).length > 0) {
@@ -33,7 +43,7 @@ $(document).ready(function (){
             $("#esito_checked_wrapper").append('<p>\
                             <div class="form-check" style="padding-left: 30px">\
                                 <input class="form-check-input" type="checkbox" name="esito_gare[]" id="esito_' +checked[i]+ '" value="' +checked[i]+ '" checked>\
-                                <label class="form-check-label" for="esito_' +checked[i]+ '">' +''+ '</label>\
+                                <label class="form-check-label" for="esito_' +checked[i]+ '">' +datatable.row(ids.indexOf(checked[i])).data()[1]+ '</label>\
                             </div>\
                         </p>');
         }

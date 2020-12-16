@@ -1,3 +1,8 @@
+<style type="text/css">
+    #nav-agenti .dt-buttons {
+        display: none;
+    }
+</style>
 <div class="tab-pane fade" id="nav-agenti" role="tabpanel" aria-labelledby="nav-agenti-tab" url="{{ route('admin.gare-inserimento-dettaglis.insertFrom', ['gare_inserimento_id' => 0, 'tipologia_id' => 12]) }}" style="padding-left: 30px;">
     <div class="form-group">
         <p>
@@ -20,7 +25,7 @@
             <div class="row">
                 <div class="form-check col-3">
                     <div class="custom-file">
-                        <div id="beneficiari-agentia-file" class="file-uploader" url="{{ route('admin.gare-inserimento-dettaglis.insertFromFileUpload', ['tipologia_id' => 12, 'gare_inserimento_id' => 0]) }}">Scelgi il file di elenco</div>
+                        <div id="beneficiari-agentia-file" class="file-uploader" url="{{ route('admin.gare-inserimento-dettaglis.insertFromFileUpload', ['tipologia_id' => 12, 'gare_inserimento_id' => 0]) }}">Scegli il file di elenco</div>
                     </div>
                 </div>
             </div>
@@ -77,15 +82,17 @@
             </div>
         </p>
     </div>
-    <div id="beneficiar_dealer_lists_wrapper" class="beneficiar-table">
-        <table id="beneficiar_agentia_lists" style="width: 100%;" url="{{route('admin.gare-inserimento-dettaglis.getDettaglis', ['tipologia_id' => 12, 'gare_inserimento_id' => 0])}}">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Codice</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-        </table>
+    <div class="row">
+        <div id="beneficiar_dealer_lists_wrapper" class="beneficiar-table  col-lg-4 col-md-6 col-sm-12">
+            <table id="beneficiar_agentia_lists" class="col-lg-4 col-md-6 col-sm-12" style="width: 100%;" url="{{route('admin.gare-inserimento-dettaglis.getDettaglis', ['tipologia_id' => 12, 'gare_inserimento_id' => 0])}}">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Codice</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>

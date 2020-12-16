@@ -22,14 +22,14 @@
                         <p>
                             <div class="form-check" style="padding-left: 30px">
                                 <label class="form-check-label" for="esito_incremento">aumentare i compensi con un incremento percentuale</label>
-                                <input type="text" name="esito_incremento" id="esito_incremento" value="{{(isset($gare->esito) && $gare->esito == 1) ? $gare->esito_incremento : ""}}">
+                                <input style="width: 200px;display: inline;" class="form-control" type="text" name="esito_incremento" id="esito_incremento" value="{{(isset($gare->esito) && $gare->esito == 1) ? $gare->esito_incremento : ""}}">
                                 <label class="form-check-label" for="esito_incremento">al raggiungimento dell'obiettivo fissato in gara</label>
                             </div>
                         </p>
                         <p>
                             <div class="form-check" style="padding-left: 30px; margin-top:5px">
                                 <label class="form-check-label" for="esito_decremento">ridurre i compensi con un decremento percentuale</label>
-                                <input type="text" name="esito_decremento" id="esito_decremento" value="{{(isset($gare->esito) && $gare->esito == 1) ? $gare->esito_decremento : ""}}">
+                                <input style="width: 200px;display: inline;" class="form-control" type="text" name="esito_decremento" id="esito_decremento" value="{{(isset($gare->esito) && $gare->esito == 1) ? $gare->esito_decremento : ""}}">
                                 <label class="form-check-label" for="esito_decremento">al mancato raggiungimento dell'obiettivo fissato in gara</label>
                             </div>
                         </p>
@@ -54,7 +54,7 @@
                 <div class="container">
                     <div>
                         <p>
-                            <button class="btn btn-primary" id="btn_esito_open_modal" type="button">Seleziona le categorie</button>
+                            <button class="btn btn-primary" id="btn_esito_open_modal" type="button">Seleziona le Gareinserimentos</button>
                         </p>
                     </div>
                     <div style="margin-top: 30px" id="esito_checked_wrapper">
@@ -73,19 +73,19 @@
             </div>
         </div>
         <p></p>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-9">
+        <div class="mt-5 row">
+            <div class="col-lg-4 col-md-8 col-sm-12">
                 <button class="btn btn-info go-back">
-                    Titolo della gara
+                    Visibilità
                 </button>
-                <button class="btn btn-danger pull-right go-next">
-                    Beneficiari
+                <button class="btn btn-danger pull-right go-next" type="submit">
+                    
+                    @if(request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*"))
+                        Fasce
+                    @else
+                        Target
+                    @endif
                 </button>
-            </div>
-            <div class="col-lg-9 col-md-6 col-sm-3">
-                <button class="btn btn-success pull-left save" type="submit">
-                    Crea
-                </button>  
             </div>
         </div>
 

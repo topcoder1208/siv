@@ -18,11 +18,11 @@
                             <a class="nav-item nav-link" id="nav-fasce-tab" data-toggle="tab" href="#nav-fasce" role="tab" aria-controls="nav-fasce" aria-selected="false">Fasce</a>
                         @endif
 
-                        <a class="nav-item nav-link" id="nav-premio-tab" data-toggle="tab" href="#nav-premio" role="tab" aria-controls="nav-premio" aria-selected="false">Premio</a>
-                        
                         @if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
                             <a class="nav-item nav-link" id="nav-target-tab" data-toggle="tab" href="#nav-target" role="tab" aria-controls="nav-target" aria-selected="false">Target</a>
                         @endif
+                        <a class="nav-item nav-link" id="nav-premio-tab" data-toggle="tab" href="#nav-premio" role="tab" aria-controls="nav-premio" aria-selected="false">Premio</a>
+                        
                         <a class="nav-item nav-link" id="nav-dipendenze-tab" data-toggle="tab" href="#nav-dipendenze" role="tab" aria-controls="nav-dipendenze" aria-selected="false">Dipendenze</a>
                         <a class="nav-item nav-link" id="nav-metodo-attribuzione-tab" data-toggle="tab" href="#nav-metodo-attribuzione" role="tab" aria-controls="nav-metodo-attribuzione" aria-selected="false">Metodo attribuzione</a>
                     </div>
@@ -40,12 +40,12 @@
                         @include('admin.gareInserimentos.tabPages.fasce')
                     @endif
 
-                    @include('admin.gareInserimentos.tabPages.premio')
-
                     @if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
                         @include('admin.gareInserimentos.tabPages.target')
                     @endif
                     
+                    @include('admin.gareInserimentos.tabPages.premio')
+
                     @include('admin.gareInserimentos.tabPages.dipendenze')
                     @include('admin.gareInserimentos.tabPages.metodo_attribuzione')
                     <!-- Modal -->

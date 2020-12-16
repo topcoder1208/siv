@@ -7,14 +7,11 @@ $(document).ready(function () {
 
         var fasco = parseInt($("#inp_fasce").val());
         if(isNaN(fasco)) {
-            alert("please input fasco");
+            alert("Si prega di inserire il numero di fasce.");
             return;
         }
 
-        var url = $("#premio_table").attr("url");
-        url = url.split("/");
-        url[url.length - 1] = $("#gare-inserimentos-id").val();
-        url = url.join("/");
+        var url = getLatestUrl($("#premio_table").attr("url"));
         $.get(url, function (data) {
             var str = "";
             str += "<tr>";

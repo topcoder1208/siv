@@ -12,4 +12,14 @@
             @include('admin.gareInserimentos.tabPages.target.agenti')
         </div>
     </div>
+    <div class="mt-5 row">
+        <div class="col-lg-4 col-md-6 col-sm-12">
+            <button class="btn btn-info go-back">
+                Esito
+            </button>
+            <button class="btn btn-danger pull-right go-next">
+                Premio
+            </button>
+        </div>
+    </div>
 </div>

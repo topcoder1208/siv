@@ -1,3 +1,8 @@
+<style type="text/css">
+    #nav-pdv .dt-buttons {
+        display: none;
+    }
+</style>
 <div class="tab-pane fade show active" id="nav-pdv" role="tabpanel" aria-labelledby="nav-pdv-tab" url="{{ route('admin.gare-inserimento-dettaglis.insertFrom', ['gare_inserimento_id' => 0, 'tipologia_id' => 10]) }}" style="padding-left: 30px;">
     <p>
         <div class="row">
@@ -18,7 +23,7 @@
     <p>
         <div class="row">
             <div class="form-check col-3">
-                <div id="beneficiari-pdv-file" class="file-uploader" url="{{ route('admin.gare-inserimento-dettaglis.insertFromFileUpload', ['tipologia_id' => 10, 'gare_inserimento_id' => 0]) }}">Scelgi il file di elenco</div>
+                <div id="beneficiari-pdv-file" class="file-uploader" url="{{ route('admin.gare-inserimento-dettaglis.insertFromFileUpload', ['tipologia_id' => 10, 'gare_inserimento_id' => 0]) }}">Scegli il file di elenco</div>
             </div>
         </div>
     </p>
@@ -74,15 +79,17 @@
             </div>
         </div>
     </p>
-    <div id="beneficiar_point_lists_wrapper" class="beneficiar-table">
-        <table id="beneficiar_point_lists" style="width: 100%;" url="{{route('admin.gare-inserimento-dettaglis.getDettaglis', ['tipologia_id' => 10, 'gare_inserimento_id' => 0])}}">
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Codice</th>
-                    <th>Name</th>
-                </tr>
-            </thead>
-        </table>
+    <div class="row">
+        <div id="beneficiar_point_lists_wrapper" class="beneficiar-table col-lg-4 col-md-6 col-sm-12">
+            <table id="beneficiar_point_lists" style="width: 100%;" url="{{route('admin.gare-inserimento-dettaglis.getDettaglis', ['tipologia_id' => 10, 'gare_inserimento_id' => 0])}}">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Codice</th>
+                        <th>Name</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
     </div>
 </div>

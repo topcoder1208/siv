@@ -6,7 +6,7 @@
             <p>
                 <div class="form-check row" style="padding-left: 30px">
                     <div class="col-lg-4 col-md-6 col-sm-12">
-                        <input class="form-check-input" type="radio" name="dipendenza" id="radio-dependense1" value="0" checked>
+                        <input class="form-check-input" type="radio" name="dipendenza" id="radio-dependense1" value="0" {{((isset($gare->dipendenza) && $gare->dipendenza == 0) ? "checked" : "")}}>
                         <label class="form-check-label" for="radio-dependense1">
                             Principale: Gara che si sviluppa su un arco di tempo temporale mensile
                         </label>
@@ -16,7 +16,7 @@
             <p>
                 <div class="form-check row" style="padding-left: 30px">
                     <div class="col-lg-4 col-md-6 col-sm-12">
-                        <input class="form-check-input" type="radio" name="dipendenza" id="radio-dependense2" value="1">
+                        <input class="form-check-input" type="radio" name="dipendenza" id="radio-dependense2" value="1" {{((isset($gare->dipendenza) && $gare->dipendenza == 1) ? "checked" : "")}}>
                         <label class="form-check-label" for="radio-dependense2">
                             Secondaria: Gara che si sviluppa su un arco di tempo contenuto nel mese
                         </label>
@@ -30,7 +30,7 @@
                         <select class="form-control" id="list_gares" name="dipendenza_gara_id" required="">
                             <option value=""></option>
                             @foreach($gares as $id => $titolo)
-                            <option value="{{$id}}">{{$titolo}}</option>
+                            <option value="{{$id}}" {{((isset($gare->dipendenza_gara_id) && $gare->dipendenza_gara_id == $id) ? "selected" : "")}}>{{$titolo}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -40,17 +40,14 @@
         <p>
             
         </p>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-9">
+        <div class="mt-5 row">
+            <div class="col-lg-4 col-md-8 col-sm-12">
                 <button type="button" class="btn btn-info go-back">
-                    Titolo della gara
+                    Target
                 </button>
-                <button type="button" class="btn btn-danger pull-right go-next">
-                    Beneficiari
+                <button type="submit" class="btn btn-danger pull-right go-next">
+                    Metodo attribuzione
                 </button>
-            </div>
-            <div class="col-lg-9 col-md-6 col-sm-3">
-                <button type="submit" class="btn btn-info">Aggiornare</button>
             </div>
         </div>
     </form>

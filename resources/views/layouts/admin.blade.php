@@ -121,12 +121,14 @@
     <script src="{{ asset('js/admin/gareInserimentos/beneficiari.js') }}"></script>
     <script src="{{ asset('js/admin/gareInserimentos/consorrenti.js') }}"></script>
     <script src="{{ asset('js/admin/gareInserimentos/premio.js') }}"></script>
-    <script src="{{ asset('js/admin/gareInserimentos/fasce.js') }}"></script>
     <script src="{{ asset('js/admin/gareInserimentos/metodo.js') }}"></script>
     <script src="{{ asset('js/admin/gareInserimentos/esito.js') }}"></script>
+    <script src="{{ asset('js/admin/gareInserimentos/visibilita.js') }}"></script>
 
     @if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
         <script src="{{ asset('js/admin/gareInserimentos/target.js') }}"></script>
+    @else
+        <script src="{{ asset('js/admin/gareInserimentos/fasce.js') }}"></script>
     @endif
     
     <script>

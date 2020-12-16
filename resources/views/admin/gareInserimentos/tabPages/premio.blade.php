@@ -40,13 +40,17 @@
     <table id="premio_table" url="{{route('admin.gare-inserimento-dettaglis.getPremio', ['gare_inserimento_id' => 0])}}"></table> 
     <p></p>
     <p></p>
-    <div class="row">
+    <div class="mt-5 row">
         <div class="col-lg-3 col-md-6 col-sm-9">
             <button class="btn btn-info go-back">
-                Titolo della gara
+                @if(request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*"))
+                    Fasce
+                @else
+                    Target
+                @endif
             </button>
             <button class="btn btn-danger pull-right go-next">
-                Beneficiari
+                Dipendenze
             </button>
         </div>
         <div class="col-lg-9 col-md-6 col-sm-3">

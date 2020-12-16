@@ -24,19 +24,14 @@
         </div>
     </p>
     <p></p>
-    <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-9">
+    <div class="mt-5 row">
+        <div class="col-lg-4 col-md-8 col-sm-12">
             <button class="btn btn-info go-back">
-                Titolo della gara
+                Esito
             </button>
-            <button class="btn btn-danger pull-right go-next">
-                Beneficiari
+            <button class="btn btn-danger pull-right go-next save" action="{{route('admin.gare-inserimento-dettaglis.saveFasce')}}">
+                Premio
             </button>
-        </div>
-        <div class="col-lg-9 col-md-6 col-sm-3">
-            <button class="btn btn-success pull-left save" action="{{route('admin.gare-inserimento-dettaglis.saveFasce')}}">
-                Crea
-            </button>  
         </div>
     </div>
 </div>

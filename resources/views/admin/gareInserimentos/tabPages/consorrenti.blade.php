@@ -1,5 +1,5 @@
 <style type="text/css">
-    #nav-concorrenti .dt-buttons {
+    #consorrenti_lists_wrapper .dt-buttons {
         display: none;
     }
 </style>

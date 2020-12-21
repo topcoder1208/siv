@@ -1,5 +1,5 @@
 <style type="text/css">
-    #nav-target-pdv .dt-buttons {
+    #target_dettaglis_point_lists_wrapper .dt-buttons {
         display: none;
     }
 </style>

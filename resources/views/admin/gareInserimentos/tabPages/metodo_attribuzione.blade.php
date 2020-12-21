@@ -82,7 +82,7 @@
  -->
                     <div>
                         <p>
-                            <button class="btn btn-primary" id="btn_metodo_open_modal" type="button">Seleziona le categorie</button>
+                            <button class="btn btn-primary" id="btn_metodo_open_modal" type="button">SELEZIONA</button>
                         </p>
                     </div>
                     <div id="metodo_checked_catatories_wrapper"></div>

@@ -39,6 +39,9 @@
                     {{ trans('cruds.gareInserimento.fields.validita_fine') }}
                 </th>
                 <th>
+                    Stato
+                </th>
+                <th>
                     &nbsp;
                 </th>
             </tr>
@@ -57,6 +60,15 @@
                 <td>
                 </td>
                 <td>
+                </td>
+                <td>
+                    <select class="search form-control">
+                        <option value="">All</option>
+                        <option value="Editing">Editing</option>
+                        <option value="Saved">Saved</option>
+                        <option value="Archived">Archived</option>
+                        <option value="Deleted">Deleted</option>
+                    </select>
                 </td>
                 <td>
                 </td>
@@ -84,6 +96,17 @@
                         {{ $gareInserimento->validita_fine ?? '' }}
                     </td>
                     <td>
+                        @if($gareInserimento->stato == 1)
+                            Editing
+                        @elseif($gareInserimento->stato == 2)
+                            Saved
+                        @elseif($gareInserimento->stato == 3)
+                            Archived
+                        @else
+                            Deleted
+                        @endif
+                    </td>
+                    <td>
                         <!-- @can('gare_inserimento_show')
                             <a class="btn btn-xs btn-primary" href="{{ route('admin.gare-inserimentos.show', $gareInserimento->id) }}">
                                 {{ trans('global.view') }}
@@ -95,11 +118,17 @@
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.gare-inserimentos.target.edit', $gareInserimento->id) }}">
                                     {{ trans('global.edit') }}
                                 </a>
+                                <a class="btn btn-xs btn-success" href="{{ route('admin.gare-inserimentos.target.copy', $gareInserimento->id) }}">
+                                    copia
+                                </a>
                             @endcan
                         @elseif(request()->is("admin/gare-inserimentos/fascia") || request()->is("admin/gare-inserimentos/fascia*"))
                             @can('gare_inserimento_edit')
                                 <a class="btn btn-xs btn-info" href="{{ route('admin.gare-inserimentos.fascia.edit', $gareInserimento->id) }}">
                                     {{ trans('global.edit') }}
+                                </a>
+                                <a class="btn btn-xs btn-success" href="{{ route('admin.gare-inserimentos.fascia.copy', $gareInserimento->id) }}">
+                                    copia
                                 </a>
                             @endcan
                         @endif

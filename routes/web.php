@@ -71,6 +71,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
     Route::delete('gare-inserimentos/destroy', 'GareInserimentoController@massDestroy')->name('gare-inserimentos.massDestroy');
     Route::get('gare-inserimentos/fascia', 'GareInserimentoController@index')->name('gare-inserimentos.fascia');
     Route::get('gare-inserimentos/target', 'GareInserimentoController@index')->name('gare-inserimentos.target');
+    Route::get('gare-inserimentos/fascia/copy/{id}', 'GareInserimentoController@copy')->name('gare-inserimentos.fascia.copy');
+    Route::get('gare-inserimentos/target/copy/{id}', 'GareInserimentoController@copy')->name('gare-inserimentos.target.copy');
     Route::get('gare-inserimentos/fascia/create', 'GareInserimentoController@create')->name('gare-inserimentos.fascia.create');
     Route::get('gare-inserimentos/target/create', 'GareInserimentoController@create')->name('gare-inserimentos.target.create');
     Route::get('gare-inserimentos/fascia/{gare_inserimento}/edit', 'GareInserimentoController@edit')->name('gare-inserimentos.fascia.edit');

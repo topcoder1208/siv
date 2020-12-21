@@ -1,5 +1,5 @@
 <style type="text/css">
-    #nav-pdv .dt-buttons {
+    #beneficiar_point_lists_wrapper .dt-buttons {
         display: none;
     }
 </style>

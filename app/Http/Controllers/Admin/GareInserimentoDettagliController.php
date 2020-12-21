@@ -205,7 +205,7 @@ class GareInserimentoDettagliController extends Controller
             $tipologia_id = 14;
         }
 
-        $result = GareInserimentoDettagli::where(['tipologia_id' => $tipologia_id])->get();
+        $result = GareInserimentoDettagli::where(['tipologia_id' => $tipologia_id, 'gare_inserimento_id' => $gareInserimentosId])->get();
         return $result;
     }
 
@@ -275,12 +275,12 @@ class GareInserimentoDettagliController extends Controller
                 DB::insert('INSERT INTO gare_inserimento_dettaglis(gare_inserimento_id, tipologia, descrizione_valore, valore_n_1, tipologia_id)
                                                     SELECT ?, "' .$tipologia. '", `' .$field. '`, codice, ' .$tipologia_id. ' FROM `' .$tbl. '` WHERE 
                                                     id IN (' .implode(",", $data). ') AND
-                                                    codice NOT IN (SELECT valore_n_1 FROM gare_inserimento_dettaglis WHERE gare_inserimento_id=?)', 
-                                                [$gare_inserimento_id, $gare_inserimento_id]);
+                                                    codice NOT IN (SELECT valore_n_1 FROM gare_inserimento_dettaglis WHERE gare_inserimento_id=? and tipologia_id=?)', 
+                                                [$gare_inserimento_id, $gare_inserimento_id, $tipologia_id]);
             }
         }
 
-        $result = GareInserimentoDettagli::where(['tipologia_id' => $tipologia_id])->get();
+        $result = GareInserimentoDettagli::where(['tipologia_id' => $tipologia_id, 'gare_inserimento_id' => $gare_inserimento_id])->get();
         return $result;
     }
 
@@ -447,7 +447,7 @@ class GareInserimentoDettagliController extends Controller
         $data = $request->all();
         $metodo_attribuzione = $data['metodo_attribuzione'];
         $metodo_calcolo = $data['metodo_calcolo'];
-        GareInserimento::where(['id' => $data['gare-inserimentos-id']])->update(['metodo_attribuzione' => $metodo_attribuzione, 'metodo_calcolo' => $metodo_calcolo]);
+        GareInserimento::where(['id' => $data['gare-inserimentos-id']])->update(['metodo_attribuzione' => $metodo_attribuzione, 'metodo_calcolo' => $metodo_calcolo, 'stato' => 2]);
 
         $valore_n_1 = $data['valore_n_1'];
         $valore_n_2 = $data['valore_n_2'];

@@ -1,5 +1,5 @@
 <style type="text/css">
-    #nav-target-agenti .dt-buttons {
+    #target_dettaglis_agenti_lists_wrapper .dt-buttons {
         display: none;
     }
 </style>

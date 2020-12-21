@@ -143,13 +143,15 @@
   let selectNoneButtonTrans = '{{ trans('global.deselect_all') }}'
 
   let languages = {
-    'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
+    'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json',
+    'it': 'https://cdn.datatables.net/plug-ins/1.10.22/i18n/Italian.json'
   };
 
   $.extend(true, $.fn.dataTable.Buttons.defaults.dom.button, { className: 'btn' })
   $.extend(true, $.fn.dataTable.defaults, {
     language: {
-      url: languages['{{ app()->getLocale() }}']
+      // url: languages['{{ app()->getLocale() }}']
+      url: languages['it']
     },
     columnDefs: [{
         orderable: false,

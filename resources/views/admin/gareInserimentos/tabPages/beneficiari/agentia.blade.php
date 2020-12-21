@@ -1,5 +1,5 @@
 <style type="text/css">
-    #nav-agenti .dt-buttons {
+    #beneficiar_dealer_lists_wrapper .dt-buttons {
         display: none;
     }
 </style>

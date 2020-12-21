@@ -44,6 +44,25 @@ class GareInserimentoController extends Controller
         return view('admin.gareInserimentos.index', compact('gareInserimentos', 'categories', 'soggetti_tipologia', 'offertes'));
     }
 
+    public function copy($id, Request $request) {
+        abort_if(Gate::denies('gare_inserimento_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $gare = GareInserimento::find($id);
+        $new_gare = $gare->replicate();
+        $new_gare->save();
+
+        $new_id = $new_gare->id;
+        DB::insert('INSERT INTO gare_inserimento_dettaglis(`tipologia`,`valore_n_1`,`valore_n_2`,`valore_n_3`,`valore_n_4`,`descrizione_valore`,`gare_inserimento_id`,`tipologia_id`)
+                                            SELECT `tipologia`,`valore_n_1`,`valore_n_2`,`valore_n_3`,`valore_n_4`,`descrizione_valore`,?,`tipologia_id` FROM
+                                            `gare_inserimento_dettaglis` WHERE gare_inserimento_id=?;', 
+                                        [$new_id, $id]);
+
+
+        if(request()->is("admin/gare-inserimentos/target") || request()->is("admin/gare-inserimentos/target*"))
+            return redirect(route("admin.gare-inserimentos.target"));
+        else
+            return redirect(route("admin.gare-inserimentos.fascia"));
+    }
+
     public function create()
     {
         abort_if(Gate::denies('gare_inserimento_create'), Response::HTTP_FORBIDDEN, '403 Forbidden');
